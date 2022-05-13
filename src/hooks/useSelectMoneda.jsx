@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import styled from '@emotion/styled'
 
-const Label = styled.label`
+const Label = styled.label` 
     color: #fff;
     display: block;
     margin: 15px 0;
@@ -27,7 +27,7 @@ const useSelectMoneda = (label, opciones) => {
         <>
             <Label> {label} </Label>
             <Select 
-                value={state} 
+                value={state}  
                 onChange= { e => setState(e.target.value)}
             >
                 <option value="">Seleccione</option>

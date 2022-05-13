@@ -65,6 +65,7 @@ const Formulario = ({setMonedas}) => {
             moneda,
             cripto
         })
+        
     }
 
     
