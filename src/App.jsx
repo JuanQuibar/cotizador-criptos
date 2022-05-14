@@ -86,7 +86,7 @@ function App() {
           setMonedas={setMonedas}
         />
         {cargando && <Spinner /> }
-        {resultado.PRICE && <Resultado resultado={resultado} /> /* && window.scrollTo(0, 10) */}
+        {resultado.PRICE && <Resultado resultado={resultado} />}
       </div>
     </Contenedor>
   )

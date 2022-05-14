@@ -15,6 +15,9 @@ const Texto = styled.p`
     span{
         font-weight: 700;
     }
+    @media (max-width: 500px){
+    font-size: 16px;
+    }
 `
 const Precio = styled.p`
     font-size: 24px;
@@ -22,6 +25,10 @@ const Precio = styled.p`
         font-weight: 700;
     }
     margin-top: 3px;
+
+    @media (max-width: 500px){
+    font-size: 20px;
+    }
 `
 const Imagen = styled.img`
     display: block;
@@ -31,12 +38,45 @@ const Imagen = styled.img`
 
 const Resultado = ({resultado}) => {
     const bajar = () => {
-        window.scrollTo(0, document.body.scrollHeight)
+        window.scroll({
+            top: 1000,
+            left: 0,
+            behavior: 'smooth'
+          });
     }
+
+
+    const formatCifra = (cantidad) =>{
+        const eliminarLetras = cantidad.replace(/[A-Z/€$,]/g, '')
+        const numero = Number(eliminarLetras)
+       
+        const cantidadFinal = numero.toLocaleString('es-AR',{
+            minimumFractionDigits: 2
+        })
+            console.log(cantidadFinal)
+        return cantidadFinal
+    }
+    
+    
+
+    /* const formatCifra = (cantidad) => {
+        return cantidad.toLocaleString('de-DE',{
+            minimumFractionDigits: 2, 
+            style: "currency"
+        })
+    } */
+
    
 
-    const {PRICE, LASTUPDATE, CHANGEPCT24HOUR, LOWDAY, HIGHDAY, IMAGEURL} = resultado
-  return (
+    const {PRICE, 
+        LASTUPDATE, 
+        CHANGEPCT24HOUR, 
+        LOWDAY, HIGHDAY, 
+        IMAGEURL, 
+        TOSYMBOL
+    } = resultado
+
+    return (
     <>
         <Contenedor>
             <Imagen 
@@ -44,16 +84,40 @@ const Resultado = ({resultado}) => {
             alt="imagen cripto" 
             />
             <div>
-                <Precio>El precio es de: <span>{PRICE} </span></Precio>
-                <Texto>Precio más alto del día: <span>{HIGHDAY} </span></Texto>
-                <Texto>Precio más bajo del día: <span>{LOWDAY} </span></Texto>
-                <Texto>Variación últimas 24 hs: <span>{`${CHANGEPCT24HOUR}%`} </span></Texto>
-                <Texto>Última actualización: <span>{LASTUPDATE} </span></Texto>
+
+                <Precio>
+                    El precio es de: 
+                    <span>{` ${TOSYMBOL} ${formatCifra(PRICE)}`} </span>
+                </Precio>
+
+                <Texto>
+                    Precio más alto del día: 
+                    <span>{` ${TOSYMBOL} ${formatCifra(HIGHDAY)}`} </span>
+                </Texto>
+
+                <Texto>
+                    Precio más bajo del día: 
+                    <span>{` ${TOSYMBOL} ${formatCifra(LOWDAY)}`} </span>
+                </Texto>
+
+                <Texto>
+                    Variación últimas 24 hs: 
+                    <span>{` ${TOSYMBOL} ${formatCifra(CHANGEPCT24HOUR)}%`} </span>
+                </Texto>
+
+                <Texto>
+                    Última actualización: 
+                    <span>{` ${TOSYMBOL} ${formatCifra(LASTUPDATE)}`} </span>
+                </Texto>
+
             </div>
         </Contenedor>
-        { bajar()}
+        {setTimeout(() => {
+            bajar()
+        }, 500) }
     </>
-  )
+        
+    )
 }
 
 export default Resultado
