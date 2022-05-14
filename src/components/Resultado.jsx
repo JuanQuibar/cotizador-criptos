@@ -102,19 +102,19 @@ const Resultado = ({resultado}) => {
 
                 <Texto>
                     Variación últimas 24 hs: 
-                    <span>{` ${TOSYMBOL} ${formatCifra(CHANGEPCT24HOUR)}%`} </span>
+                    <span>{` ${formatCifra(CHANGEPCT24HOUR)}%`} </span>
                 </Texto>
 
                 <Texto>
                     Última actualización: 
-                    <span>{` ${TOSYMBOL} ${formatCifra(LASTUPDATE)}`} </span>
+                    <span>{` ${LASTUPDATE}`} </span>
                 </Texto>
 
             </div>
         </Contenedor>
         {setTimeout(() => {
             bajar()
-        }, 500) }
+        }, 800) }
     </>
         
     )

@@ -21,6 +21,9 @@ const Imagen = styled.img`
   width: 80%;
   margin: 100px auto 0 auto;
   display: block;
+  @media (max-width: 500px){
+    margin: 10px auto 0 auto;
+  }
 `
 
 const Heading = styled.h1`
